@@ -4,15 +4,15 @@ pip install wheel
 pip install omegaconf==2.3.0 
 pip install jaxtyping typeguard
 
-# nerf
-pip install git+https://github.com/KAIR-BAIR/nerfacc.git@v0.5.2
-
 # training
 pip3 install torch torchvision torchaudio
 pip install lightning==2.0.0
 pip install git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch
 pip install accelerate
 python3 -m pip install tensorflow[and-cuda]
+
+# nerf
+pip install git+https://github.com/KAIR-BAIR/nerfacc.git@v0.5.2
 
 # huggingface
 pip install diffusers<0.20
