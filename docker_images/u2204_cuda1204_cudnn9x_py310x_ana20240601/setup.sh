@@ -19,6 +19,8 @@ cd Python-3.10.15.tgz
 make -j 8
 make altinstall
 
+apt-get install python3-dev
+
 # apt-get update
 # apt-get -y install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
 # curl -O https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh

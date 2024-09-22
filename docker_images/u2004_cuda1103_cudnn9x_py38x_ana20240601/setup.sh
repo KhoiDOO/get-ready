@@ -19,6 +19,8 @@ cd Python-3.8.20
 make -j 8
 make altinstall
 
+apt-get install python3-dev
+
 apt-get update
 apt-get -y install cudnn9-cuda-11
 
