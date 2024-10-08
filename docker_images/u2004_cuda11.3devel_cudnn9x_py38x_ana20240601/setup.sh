@@ -12,14 +12,17 @@ apt-get install -y build-essential software-properties-common
 apt install -y make build-essential libssl-dev zlib1g-dev \
        libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
        libncurses5-dev libncursesw5-dev xz-utils tk-dev
-curl -O https://www.python.org/ftp/python/3.10.15/Python-3.10.15.tgz
-tar xvf Python-3.10.15.tgz
-cd Python-3.10.15.tgz
+curl -O https://www.python.org/ftp/python/3.8.20/Python-3.8.20.tgz
+tar xvf Python-3.8.20.tgz
+cd Python-3.8.20
 ./configure --enable-optimizations --with-ensurepip=install
 make -j 8
 make altinstall
 
-apt-get install python3-dev
+apt-get install -y python3-dev
+
+apt-get update
+apt-get -y install cudnn9-cuda-11
 
 # apt-get update
 # apt-get -y install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
