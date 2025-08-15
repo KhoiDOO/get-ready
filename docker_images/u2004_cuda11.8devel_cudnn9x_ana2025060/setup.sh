@@ -3,7 +3,7 @@ cd Download
 
 apt-get update 
 apt-get -y upgrade
-apt-get install -y curl git tmux htop nvtop
+apt-get install -y nano curl git tmux htop nvtop
 apt-get install zlib1g
 
 apt-get update
