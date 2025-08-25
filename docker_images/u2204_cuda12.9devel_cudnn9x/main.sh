@@ -3,7 +3,4 @@ docker run --rm --runtime=nvidia --gpus all \
     --device /dev/nvidiactl:/dev/nvidiactl \
     --device /dev/nvidia-uvm:/dev/nvidia-uvm \
     --device /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools \
-    nvcr.io/nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04 nvidia-smi # change the image here
-
-# docker run --rm --runtime=nvidia --gpus all \
-#       nvcr.io/nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04 nvidia-smi
+    nvcr.io/nvidia/cuda:12.9.1-cudnn-devel-ubuntu22.04 nvidia-smi # change the image here
