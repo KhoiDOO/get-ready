@@ -51,6 +51,7 @@ RUN pip install onnx==1.19.0
 RUN pip install onnxruntime==1.22.1
 RUN pip install diffusers==0.35.1
 RUN pip install ninja==1.13.0
+RUN pip install x-transformers==2.7.4
 # RUN git clone https://github.com/NVIDIA/apex.git /tmp/apex && \
 #     cd /tmp/apex && \
 #     APEX_CPP_EXT=1 APEX_CUDA_EXT=1 APEX_ALL_CONTRIB_EXT=1 pip install -v --no-build-isolation .
