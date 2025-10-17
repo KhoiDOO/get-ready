@@ -4,7 +4,10 @@ FROM nvidia/cuda:12.9.1-cudnn-devel-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update & install required packages
-RUN apt-get update && apt-get -y upgrade
+RUN echo v0.1.0
+RUN apt-get update
+RUN apt-get -y upgrade
+
 RUN apt-get install -y \
     nano \
     curl \
@@ -14,7 +17,11 @@ RUN apt-get install -y \
     zlib1g \
     build-essential \
     software-properties-common \
-    zip
+    zip \
+    wget \
+    p7zip-full \
+    p7zip-rar \
+    snapd
 
 RUN apt-get install -y python3-pip
 
