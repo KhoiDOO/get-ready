@@ -4,7 +4,7 @@ FROM nvidia/cuda:12.9.1-cudnn-devel-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update & install required packages
-RUN echo v0.1.0
+RUN echo v0.1.2
 RUN apt-get update
 RUN apt-get -y upgrade
 
@@ -22,6 +22,9 @@ RUN apt-get install -y \
     p7zip-full \
     p7zip-rar \
     snapd
+
+RUN apt-get install -y git-lfs
+RUN git lfs install
 
 RUN apt-get install -y python3-pip
 
@@ -60,3 +63,11 @@ RUN pip install diffusers==0.35.1
 RUN pip install ninja==1.13.0
 RUN pip install x-transformers==2.7.4
 RUN pip install timm==1.0.19
+RUN pip install polars==1.34.0
+
+RUN pip install imageio==2.37.0
+RUN pip install imageio-ffmpeg==0.6.0
+RUN pip install gradio==5.44.1
+RUN pip install tyro==0.9.35
+RUN pip install pybind11==3.0.1
+RUN pip install megfile==4.2.4
