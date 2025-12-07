@@ -3,71 +3,41 @@ FROM nvidia/cuda:12.9.1-cudnn-devel-ubuntu22.04
 # Set noninteractive mode for apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Update & install required packages
-RUN echo v0.1.2
-RUN apt-get update
-RUN apt-get -y upgrade
+# Update, install required packages (no-install-recommends) and clean up to reduce image size
+RUN apt-get update && apt-get -y upgrade && \
+    apt-get install -y --no-install-recommends \
+        nano \
+        curl \
+        git \
+        htop \
+        nvtop \
+        zlib1g \
+        build-essential \
+        software-properties-common \
+        zip \
+        wget \
+        p7zip-full \
+        p7zip-rar \
+        git-lfs \
+        bmon \
+        python3-pip && \
+    git lfs install && \
+    apt-get autoremove -y && apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/* /usr/share/doc/* /usr/share/man/*
 
-RUN apt-get install -y \
-    nano \
-    curl \
-    git \
-    htop \
-    nvtop \
-    zlib1g \
-    build-essential \
-    software-properties-common \
-    zip \
-    wget \
-    p7zip-full \
-    p7zip-rar \
-    snapd
-
-RUN apt-get install -y git-lfs
-RUN git lfs install
-
-RUN apt-get install -y python3-pip
-
-RUN pip install -U pip wheel
-
-RUN pip install tqdm==4.67.1
-RUN pip install beartype==0.21.0
-RUN pip install omegaconf==2.3.0
-
-RUN pip install pillow==11.0.0
-RUN pip install opencv-python==4.12.0.88
-RUN pip install scikit-image==0.25.2
-RUN pip install albumentationsx==2.0.10
-
-RUN pip install scikit-learn==1.7.1
-
-RUN pip install wandb==0.21.1
-RUN pip install tensorboard==2.20.0
-RUN pip install datasets==4.0.0
-
-RUN pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu129
-RUN pip install einops==0.8.1
-RUN pip install ema-pytorch==0.7.7
-RUN pip install pytorch-warmup==0.2.0
-RUN pip install pytorch-custom-utils==0.0.21
-RUN pip install memory-efficient-attention-pytorch==0.1.6
-RUN pip install sentencepiece==0.2.1
-RUN pip install transformers==4.55.3
-RUN pip install vector-quantize-pytorch==1.23.1
-RUN pip install accelerate==1.10.0
-RUN pip install torchinfo==1.8.0
-RUN pip install gdown==5.2.0
-RUN pip install onnx==1.19.0
-RUN pip install onnxruntime==1.22.1
-RUN pip install diffusers==0.35.1
-RUN pip install ninja==1.13.0
-RUN pip install x-transformers==2.7.4
-RUN pip install timm==1.0.19
-RUN pip install polars==1.34.0
-
-RUN pip install imageio==2.37.0
-RUN pip install imageio-ffmpeg==0.6.0
-RUN pip install gradio==5.44.1
-RUN pip install tyro==0.9.35
-RUN pip install pybind11==3.0.1
-RUN pip install megfile==4.2.4
+# Consolidate pip installs into a single layer, use --no-cache-dir and remove pip cache
+RUN pip install -U --no-cache-dir pip wheel && \
+    pip install --no-cache-dir \
+        tqdm==4.67.1 beartype==0.21.0 omegaconf==2.3.0 pillow==11.0.0 opencv-python==4.12.0.88 \
+        scikit-image==0.25.2 albumentationsx==2.0.10 scikit-learn==1.7.1 wandb==0.21.1 \
+        tensorboard==2.20.0 datasets==4.0.0 gdown==5.2.0 ninja==1.13.0 polars==1.34.0 \
+        imageio==2.37.0 imageio-ffmpeg==0.6.0 gradio==5.44.1 tyro==0.9.35 pybind11==3.0.1 \
+        megfile==4.2.4 && \
+    pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cu129 \
+        torch torchvision && \
+    pip install --no-cache-dir \
+        einops==0.8.1 ema-pytorch==0.7.7 pytorch-warmup==0.2.0 pytorch-custom-utils==0.0.21 \
+        memory-efficient-attention-pytorch==0.1.6 sentencepiece==0.2.1 transformers==4.55.3 \
+        vector-quantize-pytorch==1.23.1 accelerate==1.10.0 torchinfo==1.8.0 onnx==1.19.0 \
+        onnxruntime==1.22.1 diffusers==0.35.1 x-transformers==2.7.4 timm==1.0.19 && \
+    rm -rf /root/.cache/pip
