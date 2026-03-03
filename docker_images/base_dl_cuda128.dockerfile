@@ -19,13 +19,8 @@ RUN apt-get update && apt-get -y upgrade && \
         wget \
         p7zip-full \
         p7zip-rar \
-        git-lfs \
         bmon \
-        python3-pip \
-        rsync \
-        openssh-client \
-        openssh-server && \
-    git lfs install && \
+        python3-pip && \
     apt-get autoremove -y && apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/* /usr/share/doc/* /usr/share/man/* /usr/share/locale/*
 
