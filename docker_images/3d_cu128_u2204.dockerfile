@@ -1,4 +1,4 @@
-FROM kohido/base_cu128_u2204:v0.0.2
+FROM kohido/base_cu128_u2204:v0.0.5
 
 # Set noninteractive mode for apt
 ENV DEBIAN_FRONTEND=noninteractive
